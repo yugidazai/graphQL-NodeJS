@@ -1,0 +1,13 @@
+version: "2"
+services:
+  product-graphql:
+    build: .
+    image: "node:8.4.0"
+    working_dir: /home
+    # environment:
+      # NODE_ENV: production
+    volumes:
+      - ./:/home
+    ports:
+      - "4000:4000"
+    command: "npm start"

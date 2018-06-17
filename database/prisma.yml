@@ -1,0 +1,13 @@
+# the name for the service (will be part of the service's HTTP endpoint)
+service: product-graphql
+
+# the clusterenvironment the service is deployed to
+stage: dev
+
+# protects your Prisma API
+secret: yugidazai123
+
+# the file path pointing to your data model
+datamodel: product.graphql
+
+cluster: public-zirconhornet-505/prisma-us1

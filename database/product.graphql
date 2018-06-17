@@ -1,0 +1,7 @@
+type Product {
+  id: ID! @unique
+  price: Float! @default(value: 0)
+  name: String!
+  description: String!
+  imageUrl: String
+}

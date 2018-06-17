@@ -1,0 +1,9 @@
+graphql_server:
+  typeDefs: './src/schema.graphql'
+  port: 4000
+
+prisma:
+  secret: yugidazai123
+  endpoint: 'https://us1.prisma.sh/public-zirconhornet-505/product-graphql/dev'
+  typeDefs: 'src/generated/prisma.graphql'
+  debug: true

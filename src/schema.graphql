@@ -1,0 +1,27 @@
+# import Product from "./generated/prisma.graphql"
+
+type Query {
+  productsByName(name: String!, resultsPerPage: Int = 20, page: Int = 1): [Product!]!
+  productsByPriceRange(minPrice: Float, maxPrice: Float, resultsPerPage: Int = 20, page: Int = 1): [Product!]!
+  products(query: ProductQuery = {}, resultsPerPage: Int = 20, page: Int = 1): [Product!]!
+  product(id: ID!): Product
+  info: String!
+}
+
+type Mutation {
+  addProduct(name: String!, description: String!, price: Float!, imageUrl: String = ""): Product
+  deleteProduct(id: ID!): Product
+  updateProduct(id: ID!, data: ProductUpdate = {}): Product
+}
+
+input ProductQuery {
+  name: String
+  price: Float
+}
+
+input ProductUpdate {
+  name: String
+  price: Float
+  description: String
+  imageUrl: String
+}

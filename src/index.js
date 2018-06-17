@@ -1,30 +1,25 @@
+const Config = require('config')
 const { GraphQLServer } = require('graphql-yoga')
 const { Prisma } = require('prisma-binding')
-const Query = require('./resolvers/Query')
-const Mutation = require('./resolvers/Mutation')
-const AuthPayload = require('./resolvers/AuthPayload')
-const Subscription = require('./resolvers/Subscription')
-const Feed = require('./resolvers/Feed')
+const Query = require('./resolvers/query')
+const Mutation = require('./resolvers/mutation')
 
 const resolvers = {
   Query,
-  Mutation,
-  AuthPayload,
-  Subscription,
-  Feed
+  Mutation
 }
 
 const server = new GraphQLServer({
-  typeDefs: './src/schema.graphql',
+  typeDefs: Config.graphql_server.typeDefs,
   resolvers,
-  context: req => ({
-    ...req,
-    db: new Prisma({
-      typeDefs: 'src/generated/prisma.graphql',
-      endpoint: '__PRISMA_ENDPOINT__',
-      secret: 'mysecret123',
-      debug: true,
-    }),
-  }),
+  // To pass warning `Type "Node" is missing a "resolveType" resolver.`
+  resolverValidationOptions: {
+    requireResolversForResolveType: false
+  },
+  context: req => ({ ...req, db: new Prisma(Config.prisma)})
 })
-server.start(() => console.log(`Server is running on http://localhost:4000`))
+
+server.start(
+  { port: Config.graphql_server.port },
+  ({ port }) => console.log(`Server is running on http://localhost:${port}`)
+)
