@@ -1,20 +1,20 @@
-#GraphQL service with NodeJs & MySQL
+# GraphQL service with NodeJs & MySQL
 
 > GrapgQL
 > Prisma: wrapper of a CRUD's GraphQL API over a MySQL database
 
 
-##PRISMA
+## PRISMA
 Run cmd inside database folder
 
-###Token
+### Token
 `prisma token`
 
-###API Endpoint
+### API Endpoint
 `prisma info`
 cluster: `public-zirconhornet-505/prisma-us1`
 
-###Prisma token for authorization
+### Prisma token for authorization
 
 HTTP HEADERS
 {
